@@ -8,8 +8,8 @@ import org.noear.solon.ai.chat.ChatModel;
 import org.noear.solon.annotation.Bean;
 import org.noear.solon.annotation.Configuration;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
 public class AgentConfig {
@@ -22,7 +22,7 @@ public class AgentConfig {
 
     @Bean
     public AgentSessionProvider getSessionProvider() {
-        Map<String, AgentSession> map = new LinkedHashMap<>();
+        Map<String, AgentSession> map = new ConcurrentHashMap<>();
         return (sessionId) -> map.computeIfAbsent(sessionId,
                 k -> InMemoryAgentSession.of(k));
     }
