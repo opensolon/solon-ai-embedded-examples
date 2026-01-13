@@ -1,6 +1,7 @@
 package webapp.mcpserver;
 
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
 import org.noear.solon.Solon;
 import org.noear.solon.ai.chat.tool.MethodToolProvider;
@@ -20,7 +21,7 @@ public class McpServerConfig extends AbstractVerticle {
 
     public McpServerConfig(Router router) {
         this.router = router;
-        this.handler = new VxWebHandler();
+        this.handler = new VxWebHandler(getVertx());
     }
 
     @Override
