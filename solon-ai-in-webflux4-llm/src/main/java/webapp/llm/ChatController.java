@@ -1,7 +1,10 @@
 package webapp.llm;
 
 import org.noear.solon.ai.chat.ChatModel;
+import org.noear.solon.annotation.Produces;
+import org.noear.solon.core.util.MimeType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +17,18 @@ import reactor.core.scheduler.Schedulers;
 public class ChatController {
     @Autowired
     ChatModel chatModel;
+
+    @Autowired
+    @Qualifier("chatModelForSkill")
+    ChatModel chatModelForSkill;
+
+    @Produces(MimeType.TEXT_PLAIN_VALUE)
+    @RequestMapping("call_skill")
+    public String call_skill(String prompt) throws Exception {
+        return chatModelForSkill.prompt(prompt).call()
+                .getMessage()
+                .getContent();
+    }
 
     @RequestMapping(value = "call", produces = MediaType.TEXT_PLAIN_VALUE)
     public String call(String prompt) throws Exception {

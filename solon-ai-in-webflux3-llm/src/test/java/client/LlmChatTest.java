@@ -31,6 +31,14 @@ public class LlmChatTest extends HttpTester {
     }
 
     @Test
+    public void call_getWeather_skill() throws Exception {
+        String rst = path("/chat/call_skill").data("prompt", "杭州今天天气怎么样？").post();
+        System.out.println(rst);
+
+        assert rst != null && rst.length() > 0;
+    }
+
+    @Test
     public void stream_hello() throws Exception {
         CountDownLatch latch = new CountDownLatch(1);
         StringBuilder message = new StringBuilder();
