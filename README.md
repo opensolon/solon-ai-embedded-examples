@@ -11,6 +11,7 @@
 * llm（需要修改 llm/_Constants 下的常量配置，否则启动会出错）
   * chatModel 基本使用，及单测
   * tool call 基本使用，及单测
+  * skills（solon ai skills）基本使用及单测
   * rag 基本使用，及单测（embeddingModel，repository，splitter）
 * mcp （含 sse, streamable 示例；支持 MCP_2025_03_26 协议）
   * server 基本使用（需要 solon 容器支持）

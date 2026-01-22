@@ -20,6 +20,7 @@
 * llm（需要修改 llm/_Constants 下的常量配置，否则启动会出错）
   * chatModel 基本使用，及单测
   * tool call 基本使用，及单测
+  * skills（solon ai skills）基本使用及单测
   * rag 基本使用，及单测
     * embeddingModel
     * repository
