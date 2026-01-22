@@ -16,6 +16,18 @@ public class ChatController {
     @Inject
     ChatModel chatModel;
 
+    @Inject("chatModelForSkill")
+    ChatModel chatModelForSkill;
+
+
+    @Produces(MimeType.TEXT_PLAIN_VALUE)
+    @Mapping("call_skill")
+    public String call_skill(String prompt) throws Exception {
+        return chatModelForSkill.prompt(prompt).call()
+                .getMessage()
+                .getContent();
+    }
+
     @Produces(MimeType.TEXT_PLAIN_VALUE)
     @Mapping("call")
     public String call(String prompt) throws Exception {

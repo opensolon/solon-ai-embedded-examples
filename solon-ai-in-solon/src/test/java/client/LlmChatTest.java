@@ -1,8 +1,6 @@
 package client;
 
 import org.junit.jupiter.api.Test;
-import org.noear.solon.net.http.textstream.ServerSentEvent;
-import org.noear.solon.rx.SimpleSubscriber;
 import org.noear.solon.test.HttpTester;
 import org.noear.solon.test.SolonTest;
 import reactor.core.publisher.Flux;
@@ -24,6 +22,14 @@ public class LlmChatTest extends HttpTester {
     @Test
     public void call_getWeather() throws Exception {
         String rst = path("/chat/call").data("prompt", "杭州今天天气怎么样？").post();
+        System.out.println(rst);
+
+        assert rst != null && rst.length() > 0;
+    }
+
+    @Test
+    public void call_getWeather_skill() throws Exception {
+        String rst = path("/chat/call_skill").data("prompt", "杭州今天天气怎么样？").post();
         System.out.println(rst);
 
         assert rst != null && rst.length() > 0;
