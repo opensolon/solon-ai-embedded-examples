@@ -34,7 +34,7 @@ public class ChatController {
         ChatSession session = InMemoryChatSession.builder().build();
 
         //提示词元数据的应用
-        Prompt prompt = Prompt.of(query).metaPut("session", session);
+        Prompt prompt = Prompt.of(query).attrPut("session", session);
 
         return chatModelForSkill.prompt(prompt).call()
                 .getMessage()

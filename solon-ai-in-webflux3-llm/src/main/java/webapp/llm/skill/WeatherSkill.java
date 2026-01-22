@@ -16,9 +16,9 @@ public class WeatherSkill extends AbsSkill {
     @Override
     public boolean isSupported(ChatPrompt prompt) {
         //获取原数据，做更多检测
-        ChatSession session = prompt.getMetaAs("session");
+        ChatSession session = prompt.attrAs("session");
 
-        return prompt.getUserMessageContent().contains("天气");
+        return prompt.getUserContent().contains("天气");
     }
 
     @Override
