@@ -1,6 +1,7 @@
 package webapp.llm.skill;
 
 import org.noear.solon.ai.annotation.ToolMapping;
+import org.noear.solon.ai.chat.ChatSession;
 import org.noear.solon.ai.chat.prompt.ChatPrompt;
 import org.noear.solon.ai.chat.skill.AbsSkill;
 import org.noear.solon.annotation.Component;
@@ -14,6 +15,9 @@ public class WeatherSkill extends AbsSkill {
 
     @Override
     public boolean isSupported(ChatPrompt prompt) {
+        //获取原数据，做更多检测
+        ChatSession session = prompt.getMetaAs("session");
+
         return prompt.getUserMessageContent().contains("天气");
     }
 

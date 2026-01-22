@@ -1,6 +1,9 @@
 package webapp.llm;
 
 import org.noear.solon.ai.chat.ChatModel;
+import org.noear.solon.ai.chat.ChatSession;
+import org.noear.solon.ai.chat.prompt.Prompt;
+import org.noear.solon.ai.chat.session.InMemoryChatSession;
 import org.noear.solon.annotation.Produces;
 import org.noear.solon.core.util.MimeType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +27,12 @@ public class ChatController {
 
     @Produces(MimeType.TEXT_PLAIN_VALUE)
     @RequestMapping("call_skill")
-    public String call_skill(String prompt) throws Exception {
+    public String call_skill(String query) throws Exception {
+        ChatSession session = InMemoryChatSession.builder().build();
+
+        //提示词元数据的应用
+        Prompt prompt = Prompt.of(query).metaPut("session", session);
+
         return chatModelForSkill.prompt(prompt).call()
                 .getMessage()
                 .getContent();
