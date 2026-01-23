@@ -2,7 +2,7 @@ package webapp.llm.skill;
 
 import org.noear.solon.ai.annotation.ToolMapping;
 import org.noear.solon.ai.chat.ChatSession;
-import org.noear.solon.ai.chat.prompt.ChatPrompt;
+import org.noear.solon.ai.chat.prompt.Prompt;
 import org.noear.solon.ai.chat.skill.AbsSkill;
 import org.noear.solon.annotation.Component;
 import org.noear.solon.annotation.Inject;
@@ -14,7 +14,7 @@ public class WeatherSkill extends AbsSkill {
     WeatherService weatherService;
 
     @Override
-    public boolean isSupported(ChatPrompt prompt) {
+    public boolean isSupported(Prompt prompt) {
         //获取原数据，做更多检测
         ChatSession session = prompt.attrAs("session");
 
@@ -22,7 +22,7 @@ public class WeatherSkill extends AbsSkill {
     }
 
     @Override
-    public String getInstruction(ChatPrompt prompt) {
+    public String getInstruction(Prompt prompt) {
         return "如果有什么天气问题，可以问我";
     }
 

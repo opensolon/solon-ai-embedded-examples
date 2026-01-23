@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <solon.version>3.8.4-M7</solon.version>
+        <solon.version>3.8.4</solon.version>
     </properties>
 
     <dependencies>
