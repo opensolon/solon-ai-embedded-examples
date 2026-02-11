@@ -71,7 +71,7 @@ public class McpServerConfig extends AbstractVerticle  {
         //手动构建 mcp 服务端点（只是演示，可以去掉） -- 目前该模块未打通 quarkus 框架上运行的案例，请使用 quarkusCom2Endpoint() 的方式构建即可
         McpServerEndpointProvider endpointProvider = McpServerEndpointProvider.builder()
                 .name("McpServerTool2")
-                .channel(McpChannel.SSE)
+                .channel(McpChannel.STREAMABLE)
                 .sseEndpoint("/mcp/demo2/sse")
                 .build();
         endpointProvider.addTool(new MethodToolProvider(new McpServerTool2()));

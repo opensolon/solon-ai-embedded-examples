@@ -18,7 +18,7 @@ import java.util.Collection;
  * STREAMABLE_STATELESS，集群时不需要 ip_hash 路由，但不支持向 client 发送变更通知
  * STREAMABLE 或 SSE，集群时需要 ip_hash 路由
  * */
-@McpServerEndpoint(channel = McpChannel.STREAMABLE_STATELESS, name="demo1", mcpEndpoint = "/mcp/demo1/sse")
+@McpServerEndpoint(channel = McpChannel.STREAMABLE, name="demo1", mcpEndpoint = "/mcp/demo1/sse")
 public class McpServerTool {
     @Inject
     DemoService demoService;

@@ -20,7 +20,7 @@ public class HelloApp {
             //手动构建 mcp 服务端点（只是演示，可以去掉）
             McpServerEndpointProvider endpointProvider = McpServerEndpointProvider.builder()
                     .name("McpServerTool2")
-                    .channel(McpChannel.SSE)
+                    .channel(McpChannel.STREAMABLE)
                     .sseEndpoint("/mcp/demo2/sse")
                     .contextPath(app.cfg().serverContextPath())
                     .build();

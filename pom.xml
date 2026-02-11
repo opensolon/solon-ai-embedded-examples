@@ -15,7 +15,7 @@
     <modules>
         <module>solon-ai-in-jfinal</module>
         <module>solon-ai-in-jfinal-newstyle</module>
-        <module>solon-ai-in-quarkus</module>
+<!--        <module>solon-ai-in-quarkus</module>-->
         <module>solon-ai-in-solon</module>
         <module>solon-ai-in-springboot2</module>
         <module>solon-ai-in-springboot3</module>

@@ -52,7 +52,7 @@ public class McpClientTest {
 
 
         toolProvider = McpClientProvider.builder()
-                .channel(McpChannel.SSE)
+                .channel(McpChannel.STREAMABLE)
                 .apiUrl("http://localhost:8080/mcp/demo2/sse")
                 .build();
 

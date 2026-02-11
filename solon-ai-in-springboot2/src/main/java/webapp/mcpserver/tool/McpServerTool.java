@@ -21,7 +21,7 @@ import java.util.Collection;
  * STREAMABLE 或 SSE，集群时需要 ip_hash 路由
  * */
 @Service
-@McpServerEndpoint(channel = McpChannel.STREAMABLE_STATELESS, name="demo1", mcpEndpoint = "/mcp/demo1/sse")
+@McpServerEndpoint(channel = McpChannel.STREAMABLE, name="demo1", mcpEndpoint = "/mcp/demo1/sse")
 public class McpServerTool implements IMcpServerEndpoint {
     @Autowired //示例注入 spring bean
     DemoService demoService;
