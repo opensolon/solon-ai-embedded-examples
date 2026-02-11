@@ -31,19 +31,19 @@ public class McpClientTest {
 
         //工具
         Map<String, Object> map = Collections.singletonMap("location", "杭州");
-        String rst = toolProvider.callToolAsText("getWeather", map).getContent();
+        String rst = toolProvider.callTool("getWeather", map).getContent();
         System.out.println(rst);
         assert "晴，14度".equals(rst);
 
         //提示语
-        List<ChatMessage> messageList = toolProvider.getPromptAsMessages("askQuestion", Collections.singletonMap("topic", "demo"));
+        List<ChatMessage> messageList = toolProvider.getPrompt("askQuestion", Collections.singletonMap("topic", "demo")).getMessages();
         System.out.println(messageList);
 
         //资源
-        String resourceContent = toolProvider.readResourceAsText("config://app-version").getContent();
+        String resourceContent = toolProvider.readResource("config://app-version").getContent();
         System.out.println(resourceContent);
 
-        resourceContent = toolProvider.readResourceAsText("db://users/12/email").getContent();
+        resourceContent = toolProvider.readResource("db://users/12/email").getContent();
         System.out.println(resourceContent);
 
         System.out.println("---------------");
@@ -58,19 +58,19 @@ public class McpClientTest {
 
         //工具
         map = Collections.singletonMap("location", "杭州");
-        rst = toolProvider.callToolAsText("getWeather", map).getContent();
+        rst = toolProvider.callTool("getWeather", map).getContent();
         System.out.println(rst);
         assert "晴，14度".equals(rst);
 
         //提示语
-        messageList = toolProvider.getPromptAsMessages("askQuestion", Collections.singletonMap("topic", "demo"));
+        messageList = toolProvider.getPrompt("askQuestion", Collections.singletonMap("topic", "demo")).getMessages();
         System.out.println(messageList);
 
         //资源
-        resourceContent = toolProvider.readResourceAsText("config://app-version").getContent();
+        resourceContent = toolProvider.readResource("config://app-version").getContent();
         System.out.println(resourceContent);
 
-        resourceContent = toolProvider.readResourceAsText("db://users/12/email").getContent();
+        resourceContent = toolProvider.readResource("db://users/12/email").getContent();
         System.out.println(resourceContent);
     }
 

@@ -18,9 +18,8 @@ import org.noear.solon.ai.mcp.McpChannel;
 import org.noear.solon.ai.mcp.server.IMcpServerEndpoint;
 import org.noear.solon.ai.mcp.server.McpServerEndpointProvider;
 import org.noear.solon.ai.mcp.server.annotation.McpServerEndpoint;
-import org.noear.solon.ai.mcp.server.prompt.MethodPromptProvider;
-import org.noear.solon.ai.mcp.server.resource.MethodResourceProvider;
-import org.noear.solon.web.vertx.VxWebHandler;
+import org.noear.solon.ai.chat.prompt.MethodPromptProvider;
+import org.noear.solon.ai.chat.resource.MethodResourceProvider;
 import webapp.mcpserver.handle.QuarkusHandler;
 import webapp.mcpserver.tool.McpServerTool2;
 

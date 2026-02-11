@@ -19,7 +19,7 @@ public class McpStdioDemo {
                 .build();
 
         //随便写的，示意一下
-        String response = mcpClient.callToolAsText("demo", Collections.singletonMap("p1", "test"))
+        String response = mcpClient.callTool("demo", Collections.singletonMap("p1", "test"))
                 .getContent();
 
         assert response != null;

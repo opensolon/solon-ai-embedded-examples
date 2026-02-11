@@ -1,10 +1,6 @@
 package webapp;
 
 import org.noear.solon.Solon;
-import org.noear.solon.ai.chat.tool.FunctionToolDesc;
-import org.noear.solon.ai.mcp.server.McpServerEndpointProvider;
-import org.noear.solon.ai.mcp.server.prompt.FunctionPromptDesc;
-import org.noear.solon.ai.mcp.server.resource.FunctionResourceDesc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;

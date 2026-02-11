@@ -4,8 +4,8 @@ import org.noear.solon.Solon;
 import org.noear.solon.ai.chat.tool.MethodToolProvider;
 import org.noear.solon.ai.mcp.McpChannel;
 import org.noear.solon.ai.mcp.server.McpServerEndpointProvider;
-import org.noear.solon.ai.mcp.server.prompt.MethodPromptProvider;
-import org.noear.solon.ai.mcp.server.resource.MethodResourceProvider;
+import org.noear.solon.ai.chat.prompt.MethodPromptProvider;
+import org.noear.solon.ai.chat.resource.MethodResourceProvider;
 import org.noear.solon.annotation.Controller;
 import webapp.mcpserver.tool.McpServerTool2;
 
