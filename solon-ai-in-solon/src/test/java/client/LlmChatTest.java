@@ -3,11 +3,9 @@ package client;
 import org.junit.jupiter.api.Test;
 import org.noear.solon.test.HttpTester;
 import org.noear.solon.test.SolonTest;
-import reactor.core.publisher.Flux;
 import webapp.HelloApp;
 
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @SolonTest(HelloApp.class)
 public class LlmChatTest extends HttpTester {
@@ -40,8 +38,9 @@ public class LlmChatTest extends HttpTester {
         CountDownLatch latch = new CountDownLatch(1);
         StringBuilder message = new StringBuilder();
 
-        Flux.from(path("/chat/stream").data("prompt", "hello").
-                        execAsSseStream("POST"))
+        path("/chat/stream")
+                .data("prompt", "hello")
+                .execAsSseStream("POST")
                 .doOnNext(sse -> {
                     System.out.println(sse);
                     message.append(sse.getData());
@@ -65,8 +64,9 @@ public class LlmChatTest extends HttpTester {
         CountDownLatch latch = new CountDownLatch(1);
         StringBuilder message = new StringBuilder();
 
-        Flux.from(path("/chat/stream").data("prompt", "杭州今天天气怎么样？")
-                        .execAsSseStream("POST"))
+        path("/chat/stream")
+                .data("prompt", "杭州今天天气怎么样？")
+                .execAsSseStream("POST")
                 .doOnNext(sse -> {
                     System.out.println(sse);
                     message.append(sse.getData());

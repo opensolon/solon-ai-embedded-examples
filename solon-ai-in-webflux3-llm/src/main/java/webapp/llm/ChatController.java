@@ -47,7 +47,8 @@ public class ChatController {
 
     @RequestMapping(value = "stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> stream(String prompt) throws Exception {
-        return Flux.from(chatModel.prompt(prompt).stream())
+        return chatModel.prompt(prompt)
+                .stream()
                 .subscribeOn(Schedulers.boundedElastic()) //加这个打印效果更好
                 .limitRate(Integer.MAX_VALUE)
                 .filter(resp -> resp.hasContent())

@@ -47,7 +47,8 @@ public class ChatController {
     @Produces(MimeType.TEXT_EVENT_STREAM_VALUE)
     @Mapping("stream")
     public Flux<String> stream(String prompt) throws Exception {
-        return Flux.from(chatModel.prompt(prompt).stream())
+        return chatModel.prompt(prompt)
+                .stream()
                 .subscribeOn(Schedulers.boundedElastic()) //加这个打印效果更好
                 .filter(resp -> resp.hasContent())
                 .map(resp -> resp.getContent())

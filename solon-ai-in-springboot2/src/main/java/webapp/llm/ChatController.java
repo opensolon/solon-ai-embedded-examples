@@ -4,7 +4,6 @@ import org.noear.solon.ai.chat.ChatModel;
 import org.noear.solon.ai.chat.ChatSession;
 import org.noear.solon.ai.chat.prompt.Prompt;
 import org.noear.solon.ai.chat.session.InMemoryChatSession;
-import org.noear.solon.annotation.Mapping;
 import org.noear.solon.annotation.Produces;
 import org.noear.solon.core.util.MimeType;
 import org.noear.solon.core.util.RunUtil;
@@ -14,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
 //聊天模型演示
@@ -54,7 +52,8 @@ public class ChatController {
     public SseEmitter stream(String prompt) throws Exception {
         SseEmitter emitter = new SseEmitter(0L);
 
-        Flux.from(chatModel.prompt(prompt).stream())
+        chatModel.prompt(prompt)
+                .stream()
                 .subscribeOn(Schedulers.boundedElastic()) //加这个打印效果更好
                 .filter(resp -> resp.hasContent())
                 .map(resp -> resp.getContent())
