@@ -52,7 +52,7 @@ public class McpServerConfig {
             if (p1Anno != null) { //这个注解因为没有描述字段，所以变量名一定要很语义
                 Parameter p1 = (Parameter) e;
                 String name = Utils.annoAlias(p1Anno.name(), p1.getName());
-                return new ParamDesc(name, t.getGenericType(), p1Anno.required(), "");
+                return new ParamDesc(name, t.getGenericType(), p1Anno.required(), "", p1Anno.defaultValue());
             }
 
             return null;

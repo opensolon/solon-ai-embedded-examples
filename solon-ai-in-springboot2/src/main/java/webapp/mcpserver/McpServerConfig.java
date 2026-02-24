@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Constants;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,13 +47,13 @@ public class McpServerConfig {
          * */
 
         ToolSchemaUtil.addBodyDetector(e -> e.isAnnotationPresent(RequestBody.class));
-        ToolSchemaUtil.addParamResolver((e,t)->{
+        ToolSchemaUtil.addParamResolver((e, t) -> {
             RequestParam p1Anno = e.getAnnotation(RequestParam.class);
 
             if (p1Anno != null) { //这个注解因为没有描述字段，所以变量名一定要很语义
                 Parameter p1 = (Parameter) e;
                 String name = Utils.annoAlias(p1Anno.name(), p1.getName());
-                return new ParamDesc(name, t.getGenericType(), p1Anno.required(), "");
+                return new ParamDesc(name, t.getGenericType(), p1Anno.required(), "", p1Anno.defaultValue());
             }
 
             return null;
