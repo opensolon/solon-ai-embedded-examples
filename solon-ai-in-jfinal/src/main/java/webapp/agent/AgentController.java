@@ -6,9 +6,9 @@ import com.jfinal.core.Path;
 
 @Path("/agent")
 public class AgentController extends Controller {
-    public String call(String sessionId, String query) throws Throwable {
+    public String call(String sessionId, String prompt) throws Throwable {
         return AgentConfig.getAgent()
-                .prompt(query)
+                .prompt(prompt)
                 .session(AgentConfig.getSessionProvider().getSession(sessionId))
                 .call()
                 .getContent();

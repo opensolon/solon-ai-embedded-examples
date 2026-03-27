@@ -11,7 +11,7 @@ public class AgentTest extends HttpTester {
     public void call_hello() throws Exception {
         String rst = path("/agent/call")
                 .data("sessionId", "1")
-                .data("query", "hello").post();
+                .data("prompt", "hello").post();
         System.out.println(rst);
 
         assert rst != null && rst.length() > 0;

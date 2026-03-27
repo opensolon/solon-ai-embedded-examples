@@ -16,8 +16,8 @@ public class AgentController {
     AgentSessionProvider sessionProvider;
 
     @RequestMapping("call")
-    public String call(String sessionId, String query) throws Throwable {
-        return agent.prompt(query)
+    public String call(String sessionId, String prompt) throws Throwable {
+        return agent.prompt(prompt)
                 .session(sessionProvider.getSession(sessionId))
                 .call()
                 .getContent();

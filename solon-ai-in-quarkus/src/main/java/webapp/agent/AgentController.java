@@ -19,8 +19,8 @@ public class AgentController {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("call")
     @GET
-    public String call(String sessionId, String query) throws Throwable {
-        return agent.prompt(query)
+    public String call(String sessionId, String prompt) throws Throwable {
+        return agent.prompt(prompt)
                 .session(sessionProvider.getSession(sessionId))
                 .call()
                 .getContent();
