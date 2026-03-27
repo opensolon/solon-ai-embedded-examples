@@ -27,13 +27,13 @@ public class ChatController {
 
     @Produces(MimeType.TEXT_PLAIN_VALUE)
     @RequestMapping("call_skill")
-    public String call_skill(String query) throws Exception {
+    public String call_skill(String prompt) throws Exception {
         ChatSession session = InMemoryChatSession.builder().build();
 
         //提示词元数据的应用
-        Prompt prompt = Prompt.of(query).attrPut("session", session);
+        Prompt prompt2 = Prompt.of(prompt).attrPut("session", session);
 
-        return chatModelForSkill.prompt(prompt).call()
+        return chatModelForSkill.prompt(prompt2).call()
                 .getMessage()
                 .getContent();
     }
