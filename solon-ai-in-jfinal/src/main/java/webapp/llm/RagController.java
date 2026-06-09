@@ -13,9 +13,11 @@ public class RagController extends Controller {
     public void demo(String prompt) throws Exception {
         List<Document> documents = RagConfig.getRepository().search(prompt);
 
-        ChatMessage message = ChatMessage.augment(prompt, documents);
+        ChatMessage message = ChatMessage.ofUserAugment(prompt, documents);
 
-        String rst = ChatConfig.getChatModel().prompt(message).call()
+        String rst = ChatConfig.getChatModel()
+                .prompt(message)
+                .call()
                 .getMessage()
                 .getContent();
 

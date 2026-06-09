@@ -65,7 +65,7 @@ public class McpServerConfig extends AbstractVerticle  {
         Solon.start(McpServerConfig.class, new String[]{"--cfg=mcpserver.yml"}, app->{
             //添加全局鉴权过滤器示例（如果不需要，可以删掉）
             app.enableScanning(false); //不扫描
-            app.filter(new McpServerAuth());
+            app.router().filter(new McpServerAuth());
         });
 
         //手动构建 mcp 服务端点（只是演示，可以去掉） -- 目前该模块未打通 quarkus 框架上运行的案例，请使用 quarkusCom2Endpoint() 的方式构建即可

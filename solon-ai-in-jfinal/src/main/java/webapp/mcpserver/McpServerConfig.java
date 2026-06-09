@@ -9,7 +9,6 @@ import org.noear.solon.ai.chat.tool.MethodToolProvider;
 import org.noear.solon.ai.mcp.McpChannel;
 import org.noear.solon.ai.mcp.server.McpServerEndpointProvider;
 import org.noear.solon.core.handle.Context;
-import org.noear.solon.core.handle.ContextUtil;
 import org.noear.solon.web.servlet.SolonServletContext;
 import webapp.mcpserver.tool.McpServerTool2;
 
@@ -21,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  * */
 public class McpServerConfig extends Handler implements IPlugin {
     public boolean start() {
-        Solon.start(McpServerConfig.class, new String[]{"--cfg=mcpserver.yml"}, app->{
+        Solon.start(McpServerConfig.class, new String[]{"--cfg=mcpserver.yml"}, app -> {
             //添加全局鉴权过滤器示例（如果不需要，可以删掉）
-            app.filter(new McpServerAuth());
+            app.router().filter(new McpServerAuth());
         });
 
         /**
@@ -57,22 +56,23 @@ public class McpServerConfig extends Handler implements IPlugin {
     @Override
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {
         if (target.startsWith("/mcp/")) {
-            Context ctx = new SolonServletContext(request, response);
+            final Context ctx = new SolonServletContext(request, response);
 
-            try {
-                //Solon处理(可能是空处理)
-                Solon.app().tryHandle(ctx);
+            Context.currentWith(ctx, () -> {
+                try {
+                    //Solon处理(可能是空处理)
+                    Solon.app().tryHandle(ctx);
 
-                if (isHandled != null && isHandled.length > 0) {
-                    isHandled[0] = true;
+                    if (isHandled != null && isHandled.length > 0) {
+                        isHandled[0] = true;
+                    }
+                } catch (Throwable e) {
+                    ctx.errors = e;
+
+                    throw e;
                 }
-            } catch (Throwable e) {
-                ctx.errors = e;
+            });
 
-                throw e;
-            } finally {
-                ContextUtil.currentRemove();
-            }
         } else {
             if (next != null) {
                 next.handle(target, request, response, isHandled);

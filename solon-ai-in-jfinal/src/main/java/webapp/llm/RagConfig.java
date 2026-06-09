@@ -52,6 +52,6 @@ public class RagConfig {
                 .split(text);
 
         //插入知识库
-        storable.insert(documents);
+        storable.save(documents);
     }
 }

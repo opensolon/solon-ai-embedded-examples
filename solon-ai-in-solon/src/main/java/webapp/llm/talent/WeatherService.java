@@ -1,4 +1,4 @@
-package webapp.llm.skill;
+package webapp.llm.talent;
 
 import org.noear.solon.annotation.Component;
 import org.slf4j.Logger;

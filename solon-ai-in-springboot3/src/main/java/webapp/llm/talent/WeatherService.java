@@ -1,4 +1,4 @@
-package webapp.llm.skill;
+package webapp.llm.talent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -16,7 +16,7 @@ public class ChatConfig {
         return ChatModel.of(_Constants.chat_apiUrl)
                 .provider(_Constants.chat_provider)
                 .model(_Constants.chat_model)
-                .defaultToolsAdd(new WeatherTools()) //添加默认工具
+                .defaultToolAdd(new WeatherTools()) //添加默认工具
                 .build();
     }
 }

@@ -1,15 +1,15 @@
-package webapp.llm.skill;
+package webapp.llm.talent;
 
 import org.noear.solon.ai.annotation.ToolMapping;
 import org.noear.solon.ai.chat.ChatSession;
 import org.noear.solon.ai.chat.prompt.Prompt;
-import org.noear.solon.ai.chat.skill.AbsSkill;
+import org.noear.solon.ai.chat.talent.AbsTalent;
 import org.noear.solon.annotation.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WeatherSkill extends AbsSkill {
+public class WeatherTalent extends AbsTalent {
     @Autowired
     WeatherService weatherService;
 

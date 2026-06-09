@@ -1,6 +1,7 @@
 package webapp.llm.tool;
 
 import org.noear.solon.ai.annotation.ToolMapping;
+import org.noear.solon.ai.chat.tool.AbsToolProvider;
 import org.noear.solon.annotation.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
  * 如果有注入字段？请使用组件注解
  * */
 @Component
-public class CalculatorTools {
+public class CalculatorTools extends AbsToolProvider {
     @Autowired
     CalculatorService  calculatorService; //示意一下
 

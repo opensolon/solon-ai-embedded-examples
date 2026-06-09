@@ -26,7 +26,7 @@ public class RagController {
     public String demo(String prompt) throws Exception {
         List<Document> documents = repository.search(prompt);
 
-        ChatMessage message = ChatMessage.augment(prompt, documents);
+        ChatMessage message = ChatMessage.ofUserAugment(prompt, documents);
 
         return chatModel.prompt(message).call()
                 .getMessage()

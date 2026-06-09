@@ -9,7 +9,6 @@ import org.noear.solon.ai.mcp.server.McpServerEndpointProvider;
 import org.noear.solon.ai.chat.prompt.MethodPromptProvider;
 import org.noear.solon.ai.chat.resource.MethodResourceProvider;
 import org.noear.solon.core.handle.Context;
-import org.noear.solon.core.handle.ContextUtil;
 import org.noear.solon.web.servlet.SolonServletContext;
 import webapp.HelloApp;
 import webapp.mcpserver.tool.McpServerTool2;
@@ -25,7 +24,7 @@ public class McpServerConfig extends Handler implements IPlugin {
         // todo: 此处将 source 设为 (HelloApp.class)；从根据扫描，可以使用所有的 solon 能力
         Solon.start(HelloApp.class, new String[]{"--cfg=mcpserver.yml"}, app->{
             //添加全局鉴权过滤器示例（如果不需要，可以删掉）
-            app.filter(new McpServerAuth());
+            app.router().filter(new McpServerAuth());
         });
 
         /**
@@ -59,21 +58,21 @@ public class McpServerConfig extends Handler implements IPlugin {
     @Override
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {
         //todo: 不通过路径过滤，可接管所有的请求
-        Context ctx = new SolonServletContext(request, response);
+        final Context ctx = new SolonServletContext(request, response);
 
-        try {
-            //Solon处理(可能是空处理)
-            Solon.app().tryHandle(ctx);
+        Context.currentWith(ctx,()->{
+            try {
+                //Solon处理(可能是空处理)
+                Solon.app().tryHandle(ctx);
 
-            if (isHandled != null && isHandled.length > 0) {
-                isHandled[0] = true;
+                if (isHandled != null && isHandled.length > 0) {
+                    isHandled[0] = true;
+                }
+            } catch (Throwable e) {
+                ctx.errors = e;
+
+                throw e;
             }
-        } catch (Throwable e) {
-            ctx.errors = e;
-
-            throw e;
-        } finally {
-            ContextUtil.currentRemove();
-        }
+        });
     }
 }

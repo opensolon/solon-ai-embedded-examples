@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import org.noear.solon.ai.annotation.ToolMapping;
+import org.noear.solon.ai.chat.tool.AbsToolProvider;
 import org.noear.solon.annotation.Param;
 
 
@@ -11,7 +12,7 @@ import org.noear.solon.annotation.Param;
  * 如果有注入字段？请使用组件注解
  * */
 @ApplicationScoped
-public class CalculatorTools {
+public class CalculatorTools extends AbsToolProvider {
     @Inject
     CalculatorService  calculatorService; //示意一下
 

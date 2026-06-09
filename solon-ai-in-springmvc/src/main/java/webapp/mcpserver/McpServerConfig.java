@@ -37,7 +37,7 @@ public class McpServerConfig {
         Solon.start(McpServerConfig.class, new String[]{"--cfg=mcpserver.yml"}, app -> {
             //添加全局鉴权过滤器示例（如果不需要，可以删掉）
             app.enableScanning(false); //不扫描
-            app.filter(new McpServerAuth());
+            app.router().filter(new McpServerAuth());
         });
 
         /**
