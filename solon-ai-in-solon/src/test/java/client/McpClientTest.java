@@ -26,7 +26,7 @@ public class McpClientTest {
     public void case1() throws Exception {
         McpClientProvider toolProvider = McpClientProvider.builder()
                 .channel(McpChannel.STREAMABLE)
-                .apiUrl("http://localhost:8080/mcp/demo1/sse")
+                .url("http://localhost:8080/mcp/demo1/sse")
                 .build();
 
         //工具
@@ -53,7 +53,7 @@ public class McpClientTest {
 
         toolProvider = McpClientProvider.builder()
                 .channel(McpChannel.STREAMABLE)
-                .apiUrl("http://localhost:8080/mcp/demo2/sse")
+                .url("http://localhost:8080/mcp/demo2/sse")
                 .build();
 
         //工具
@@ -86,13 +86,13 @@ public class McpClientTest {
     public void case2_call() throws Exception {
         McpClientProvider toolProvider = McpClientProvider.builder()
                 .channel(McpChannel.STREAMABLE)
-                .apiUrl("http://localhost:8080/mcp/demo1/sse")
+                .url("http://localhost:8080/mcp/demo1/sse")
                 .build();
 
         ChatModel chatModel = ChatModel.of(apiUrl)
                 .provider(provider)
                 .model(model)
-                .defaultToolsAdd(toolProvider) //添加默认工具
+                .defaultToolAdd(toolProvider) //添加默认工具
                 .build();
 
         ChatResponse resp = chatModel.prompt("杭州今天的天气怎么样？")
@@ -108,13 +108,13 @@ public class McpClientTest {
     public void case2_stream() throws Exception {
         McpClientProvider toolProvider = McpClientProvider.builder()
                 .channel(McpChannel.STREAMABLE)
-                .apiUrl("http://localhost:8080/mcp/demo1/sse")
+                .url("http://localhost:8080/mcp/demo1/sse")
                 .build();
 
         ChatModel chatModel = ChatModel.of(apiUrl)
                 .provider(provider)
                 .model(model)
-                .defaultToolsAdd(toolProvider) //添加默认工具
+                .defaultToolAdd(toolProvider) //添加默认工具
                 .build();
 
         CountDownLatch latch = new CountDownLatch(1);
@@ -143,7 +143,7 @@ public class McpClientTest {
     public void case3_auth() throws Exception {
         McpClientProvider mcpClient = McpClientProvider.builder()
                 .channel(McpChannel.STREAMABLE)
-                .apiUrl("http://localhost:8080/mcp/demo1/sse?user=no")
+                .url("http://localhost:8080/mcp/demo1/sse?user=no")
                 .build();
 
         Throwable error = null;
