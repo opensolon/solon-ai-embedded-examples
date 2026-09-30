@@ -2,6 +2,7 @@ package webapp.llm;
 
 import org.noear.solon.ai.chat.ChatModel;
 import org.noear.solon.ai.chat.ChatSession;
+import org.noear.solon.ai.chat.event.ChatEventType;
 import org.noear.solon.ai.chat.prompt.Prompt;
 import org.noear.solon.ai.chat.session.InMemoryChatSession;
 import org.noear.solon.annotation.Controller;
@@ -50,8 +51,8 @@ public class ChatController {
         return chatModel.prompt(prompt)
                 .stream()
                 .subscribeOn(Schedulers.boundedElastic()) //加这个打印效果更好
-                .filter(resp -> resp.hasContent())
-                .map(resp -> resp.getContent())
+                .filter(event -> event.is(ChatEventType.TEXT_DELTA) && event.hasText())
+                .map(event -> event.getText())
                 .concatWithValues("[DONE]"); //有些前端框架，需要 [DONE] 实识用作识别
     }
 }
