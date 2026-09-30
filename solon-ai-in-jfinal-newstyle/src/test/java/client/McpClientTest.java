@@ -123,15 +123,16 @@ public class McpClientTest {
 
         chatModel.prompt("杭州今天的天气怎么样？")
                 .stream()
-                .subscribe(new SimpleSubscriber<ChatResponse>()
-                        .doOnNext(resp -> {
-                            System.out.println(resp.getMessage().getContent());
-                        }).doOnError(err -> {
-                            errRef.set(err);
-                            latch.countDown();
-                        }).doOnComplete(() -> {
-                            latch.countDown();
-                        }));
+                .doOnNext(event -> {
+                    if (event.hasText()) {
+                        System.out.println(event.getText());
+                    }
+                }).doOnError(err -> {
+                    errRef.set(err);
+                    latch.countDown();
+                }).doOnComplete(() -> {
+                    latch.countDown();
+                }).subscribe();
 
         latch.await();
         assert errRef.get() == null;
